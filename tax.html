@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
+
+
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Income Tax Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
+
 <body>
+
+
   <h1>My ITC Program Assignments!</h1>
+  
+  
   <nav>
     <a href="index.html">Home</a>
     <a href="conversion.html">Conversion</a>
@@ -13,6 +22,7 @@
     <a href="numbers.html">Natural Numbers</a>
     <a href="payroll.html">Payroll</a>
   </nav>
+
 
   <section>
     <h2>Assignment 2: Income Tax Calculator</h2>
@@ -23,18 +33,21 @@
     <p id="tax-out"></p>
   </section>
 
+
   <script>
-    document.getElementById("tax-go").onclick = function () {
-      var raw = document.getElementById("tax-in").value;
-      var out = document.getElementById("tax-out");
+  
+  
+    document.getElementById("tax-go").addEventListener("click", () => {
+      const raw = document.getElementById("tax-in").value;
+      const out = document.getElementById("tax-out");
 
       if (raw === "" || parseFloat(raw) < 0) {
-        out.innerHTML = "Please enter income of 0 or more.";
+        out.textContent = "Please enter income of 0 or more.";
         return;
       }
 
-      var income = parseFloat(raw);
-      var tax;
+      const income = parseFloat(raw);
+      let tax;
 
       if (income <= 250000) {
         tax = 0;
@@ -50,10 +63,15 @@
         tax = 2202500 + (income - 8000000) * 0.35;
       }
 
-      var takeHome = income - tax;
-      out.innerHTML = "Income tax: PHP " + tax.toFixed(2) +
-                      "<br>Take-home: PHP " + takeHome.toFixed(2);
-    };
+      const takeHome = income - tax;
+      out.innerHTML = `Income tax: PHP ${tax.toFixed(2)}<br>Take-home: PHP ${takeHome.toFixed(2)}`;
+    });
+
+
   </script>
+
+
 </body>
+
+
 </html>

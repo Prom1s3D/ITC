@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
+
+
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Conversion</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
+
 <body>
+
+
   <h1>My ITC Program Assignments!</h1>
+
+
   <nav>
     <a href="index.html">Home</a>
     <a href="conversion.html">Conversion</a>
@@ -13,6 +22,7 @@
     <a href="numbers.html">Natural Numbers</a>
     <a href="payroll.html">Payroll</a>
   </nav>
+
 
   <section>
     <h2>Assignment 1: Conversion</h2>
@@ -30,32 +40,41 @@
     <p id="c1-out"></p>
   </section>
 
+
   <script>
-    document.getElementById("c1-go").onclick = function () {
-      var type = document.getElementById("c1-type").value;
-      var raw = document.getElementById("c1-val").value;
-      var out = document.getElementById("c1-out");
 
-      if (raw === "") {
-        out.innerHTML = "Please enter a number first.";
-        return;
-      }
+    
+  document.getElementById("c1-go").addEventListener("click", () => {
+    const type = document.getElementById("c1-type").value;
+    const raw = document.getElementById("c1-val").value;
+    const out = document.getElementById("c1-out");
 
-      var v = parseFloat(raw);
-      var text;
+    if (raw === "") {
+      out.textContent = "Please enter a number first.";
+      return;
+    }
 
-      if (type === "c2f") {
-        text = v + " °C = " + (v * 9 / 5 + 32).toFixed(2) + " °F";
-      } else if (type === "f2c") {
-        text = v + " °F = " + ((v - 32) * 5 / 9).toFixed(2) + " °C";
-      } else if (type === "m2ft") {
-        text = v + " m = " + (v * 3.28084).toFixed(2) + " ft";
-      } else {
-        text = v + " ft = " + (v / 3.28084).toFixed(2) + " m";
-      }
+    const v = parseFloat(raw);
+    let text;
 
-      out.innerHTML = text;
-    };
+    if (type === "c2f") {
+      text = `${v} °C = ${(v * 9 / 5 + 32).toFixed(2)} °F`;
+    } else if (type === "f2c") {
+      text = `${v} °F = ${((v - 32) * 5 / 9).toFixed(2)} °C`;
+    } else if (type === "m2ft") {
+      text = `${v} m = ${(v * 3.28084).toFixed(2)} ft`;
+    } else {
+      text = `${v} ft = ${(v / 3.28084).toFixed(2)} m`;
+    }
+
+    out.textContent = text;
+  });
+
+
   </script>
+
+
 </body>
+
+
 </html>

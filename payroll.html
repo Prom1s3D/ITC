@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
+
+
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Simple Payroll</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
+
 <body>
+  
+  
   <h1>My ITC Program Assignments!</h1>
+
+
   <nav>
     <a href="index.html">Home</a>
     <a href="conversion.html">Conversion</a>
@@ -13,6 +22,7 @@
     <a href="numbers.html">Natural Numbers</a>
     <a href="payroll.html">Payroll</a>
   </nav>
+
 
   <section>
     <h2>Assignment 4: Simple Payroll</h2>
@@ -29,33 +39,39 @@
     <p id="p-out"></p>
   </section>
 
+
   <script>
-    document.getElementById("p-go").onclick = function () {
-      var name = document.getElementById("p-name").value;
-      var hours = parseFloat(document.getElementById("p-hours").value);
-      var rate = parseFloat(document.getElementById("p-rate").value);
-      var dedPercent = parseFloat(document.getElementById("p-ded").value);
-      var out = document.getElementById("p-out");
+
+
+    document.getElementById("p-go").addEventListener("click", () => {
+      const name = document.getElementById("p-name").value;
+      const hours = parseFloat(document.getElementById("p-hours").value);
+      const rate = parseFloat(document.getElementById("p-rate").value);
+      const dedPercent = parseFloat(document.getElementById("p-ded").value);
+      const out = document.getElementById("p-out");
 
       if (isNaN(hours) || isNaN(rate) || isNaN(dedPercent) || hours < 0 || rate < 0) {
-        out.innerHTML = "Please enter valid numbers for hours, rate and deductions.";
+        out.textContent = "Please enter valid numbers for hours, rate and deductions.";
         return;
       }
 
-      var regHours = Math.min(hours, 40);
-      var otHours = Math.max(hours - 40, 0);
+      const regHours = Math.min(hours, 40);
+      const otHours = Math.max(hours - 40, 0);
 
-      var regPay = regHours * rate;
-      var otPay = otHours * rate * 1.25;
-      var gross = regPay + otPay;
-      var deduction = gross * dedPercent / 100;
-      var net = gross - deduction;
+      const regPay = regHours * rate;
+      const otPay = otHours * rate * 1.25;
+      const gross = regPay + otPay;
+      const deduction = gross * dedPercent / 100;
+      const net = gross - deduction;
 
-      out.innerHTML = "Employee: " + name +
-        "<br>Gross pay: PHP " + gross.toFixed(2) +
-        "<br>Deductions: PHP " + deduction.toFixed(2) +
-        "<br>Net pay: PHP " + net.toFixed(2);
-    };
+      out.innerHTML = `Employee: ${name}<br>Gross pay: PHP ${gross.toFixed(2)}<br>Deductions: PHP ${deduction.toFixed(2)}<br>Net pay: PHP ${net.toFixed(2)}`;
+    });
+
+
   </script>
+
+
 </body>
+
+
 </html>

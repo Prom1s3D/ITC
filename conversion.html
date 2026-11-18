@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conversion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>My ITC Program Assignments!</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="conversion.html">Conversion</a>
+    <a href="tax.html">Income Tax</a>
+    <a href="numbers.html">Natural Numbers</a>
+    <a href="payroll.html">Payroll</a>
+  </nav>
+
+  <section>
+    <h2>Assignment 1: Conversion</h2>
+    <p>Celsius to Fahrenheit, Fahrenheit to Celsius, meters to feet, feet to meters.</p>
+    <label for="c1-type">Conversion</label>
+    <select id="c1-type">
+      <option value="c2f">Celsius to Fahrenheit</option>
+      <option value="f2c">Fahrenheit to Celsius</option>
+      <option value="m2ft">Meters to feet</option>
+      <option value="ft2m">Feet to meters</option>
+    </select>
+    <label for="c1-val">Value</label>
+    <input type="number" id="c1-val" placeholder="e.g. 36.5">
+    <button id="c1-go">Convert</button>
+    <p id="c1-out"></p>
+  </section>
+
+  <script>
+    document.getElementById("c1-go").onclick = function () {
+      var type = document.getElementById("c1-type").value;
+      var raw = document.getElementById("c1-val").value;
+      var out = document.getElementById("c1-out");
+
+      if (raw === "") {
+        out.innerHTML = "Please enter a number first.";
+        return;
+      }
+
+      var v = parseFloat(raw);
+      var text;
+
+      if (type === "c2f") {
+        text = v + " °C = " + (v * 9 / 5 + 32).toFixed(2) + " °F";
+      } else if (type === "f2c") {
+        text = v + " °F = " + ((v - 32) * 5 / 9).toFixed(2) + " °C";
+      } else if (type === "m2ft") {
+        text = v + " m = " + (v * 3.28084).toFixed(2) + " ft";
+      } else {
+        text = v + " ft = " + (v / 3.28084).toFixed(2) + " m";
+      }
+
+      out.innerHTML = text;
+    };
+  </script>
+</body>
+</html>

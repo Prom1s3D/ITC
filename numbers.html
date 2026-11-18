@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>First N Natural Numbers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>My ITC Program Assignments!</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="conversion.html">Conversion</a>
+    <a href="tax.html">Income Tax</a>
+    <a href="numbers.html">Natural Numbers</a>
+    <a href="payroll.html">Payroll</a>
+  </nav>
+
+  <section>
+    <h2>Assignment 3: First N Natural Numbers</h2>
+    <p>Factorial (while loop), sum (do-while loop), average (for loop).</p>
+    <label for="n-in">N (a whole number, 1 or more)</label>
+    <input type="number" id="n-in" placeholder="e.g. 5">
+    <button id="n-go">Compute</button>
+    <p id="n-out"></p>
+  </section>
+
+  <script>
+    document.getElementById("n-go").onclick = function () {
+      var n = parseInt(document.getElementById("n-in").value, 10);
+      var out = document.getElementById("n-out");
+
+      if (isNaN(n) || n < 1) {
+        out.innerHTML = "Please enter a whole number of 1 or more.";
+        return;
+      }
+
+      // 1. Factorial with a WHILE loop
+      var fact = 1;
+      var i = 1;
+      while (i <= n) {
+        fact *= i;
+        i++;
+      }
+
+      // 2. Sum with a DO-WHILE loop
+      var sum = 0;
+      var j = 1;
+      do {
+        sum += j;
+        j++;
+      } while (j <= n);
+
+      // 3. Average with a FOR loop
+      var total = 0;
+      for (var k = 1; k <= n; k++) {
+        total += k;
+      }
+      var avg = total / n;
+
+      out.innerHTML = n + "! = " + fact +
+                      "<br>Sum = " + sum +
+                      "<br>Average = " + avg;
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Income Tax Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>My ITC Program Assignments!</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="conversion.html">Conversion</a>
+    <a href="tax.html">Income Tax</a>
+    <a href="numbers.html">Natural Numbers</a>
+    <a href="payroll.html">Payroll</a>
+  </nav>
+
+  <section>
+    <h2>Assignment 2: Income Tax Calculator</h2>
+    <p>Enter your annual taxable income in pesos.</p>
+    <label for="tax-in">Annual taxable income (PHP)</label>
+    <input type="number" id="tax-in" placeholder="e.g. 600000">
+    <button id="tax-go">Compute tax</button>
+    <p id="tax-out"></p>
+  </section>
+
+  <script>
+    document.getElementById("tax-go").onclick = function () {
+      var raw = document.getElementById("tax-in").value;
+      var out = document.getElementById("tax-out");
+
+      if (raw === "" || parseFloat(raw) < 0) {
+        out.innerHTML = "Please enter income of 0 or more.";
+        return;
+      }
+
+      var income = parseFloat(raw);
+      var tax;
+
+      if (income <= 250000) {
+        tax = 0;
+      } else if (income <= 400000) {
+        tax = (income - 250000) * 0.15;
+      } else if (income <= 800000) {
+        tax = 22500 + (income - 400000) * 0.20;
+      } else if (income <= 2000000) {
+        tax = 102500 + (income - 800000) * 0.25;
+      } else if (income <= 8000000) {
+        tax = 402500 + (income - 2000000) * 0.30;
+      } else {
+        tax = 2202500 + (income - 8000000) * 0.35;
+      }
+
+      var takeHome = income - tax;
+      out.innerHTML = "Income tax: PHP " + tax.toFixed(2) +
+                      "<br>Take-home: PHP " + takeHome.toFixed(2);
+    };
+  </script>
+</body>
+</html>

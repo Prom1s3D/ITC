@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Payroll</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>My ITC Program Assignments!</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="conversion.html">Conversion</a>
+    <a href="tax.html">Income Tax</a>
+    <a href="numbers.html">Natural Numbers</a>
+    <a href="payroll.html">Payroll</a>
+  </nav>
+
+  <section>
+    <h2>Assignment 4: Simple Payroll</h2>
+    <p>Hours over 40 are paid at 1.25 times the hourly rate.</p>
+    <label for="p-name">Employee name</label>
+    <input type="text" id="p-name">
+    <label for="p-hours">Hours worked</label>
+    <input type="number" id="p-hours">
+    <label for="p-rate">Hourly rate (PHP)</label>
+    <input type="number" id="p-rate">
+    <label for="p-ded">Deductions (%)</label>
+    <input type="number" id="p-ded" value="10">
+    <button id="p-go">Compute payroll</button>
+    <p id="p-out"></p>
+  </section>
+
+  <script>
+    document.getElementById("p-go").onclick = function () {
+      var name = document.getElementById("p-name").value;
+      var hours = parseFloat(document.getElementById("p-hours").value);
+      var rate = parseFloat(document.getElementById("p-rate").value);
+      var dedPercent = parseFloat(document.getElementById("p-ded").value);
+      var out = document.getElementById("p-out");
+
+      if (isNaN(hours) || isNaN(rate) || isNaN(dedPercent) || hours < 0 || rate < 0) {
+        out.innerHTML = "Please enter valid numbers for hours, rate and deductions.";
+        return;
+      }
+
+      var regHours = Math.min(hours, 40);
+      var otHours = Math.max(hours - 40, 0);
+
+      var regPay = regHours * rate;
+      var otPay = otHours * rate * 1.25;
+      var gross = regPay + otPay;
+      var deduction = gross * dedPercent / 100;
+      var net = gross - deduction;
+
+      out.innerHTML = "Employee: " + name +
+        "<br>Gross pay: PHP " + gross.toFixed(2) +
+        "<br>Deductions: PHP " + deduction.toFixed(2) +
+        "<br>Net pay: PHP " + net.toFixed(2);
+    };
+  </script>
+</body>
+</html>
